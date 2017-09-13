@@ -1,0 +1,167 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  animation: App-logo-spin infinite 20s linear;
+  height: 45px;
+  padding: 5px;
+}
+
+.button-logo {
+  position: absolute;
+  top: -10px;
+  height: 60px;
+  width: 60px;
+  animation: App-logo-spin infinite 20s linear;
+}
+
+.fcc-logo {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  height: 45px;
+  padding: 5px;
+}
+
+.App-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: darkgreen;
+  height: 50px;
+  padding: 5px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45px;
+  width: 100%;
+  background-color: darkgreen;
+  color: #fff;
+}
+
+.author {
+  position: absolute;
+  padding: 0 0 5px 5px;
+}
+
+.links {
+  position: absolute;
+  padding: 0 10px 0 0 ;
+  right: 10px;
+  cursor: pointer;
+}
+
+.menu-card {
+  height: 450px;
+  background-color: teal;
+  color: white;
+}
+
+.menu-list {
+  cursor: pointer;
+}
+
+.mdc-card {
+  position: absolute;
+  top: 100px;
+  left: 25%;
+  text-align: left;
+  backdround-color: teal !important;
+  height: 450px;
+  width: 350px;
+  color: white;
+}
+
+.card-title {
+  background-color: seagreen;
+  height: 30px;
+}
+
+.card-actions {
+  background-color: seagreen;
+  height: 70px;
+}
+
+.card-button1 {
+  position: absolute;
+  right: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.card-button2 {
+  position: absolute;
+  right: 55px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.card-button3 {
+  position: absolute;
+  right: 105px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.card-button4 {
+  position: absolute;
+  right: 155px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+label[for=menu-toggle]{
+  cursor: pointer;
+}
+
+#menu-toggle {
+  position: absolute;
+  right: 5px;
+  bottom: 7px;
+  height: 35px;
+  width: 35px;
+  display: none;
+}
+
+#menu-toggle:not(:checked) ~ #menu-buttons {
+  display: none;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.menu ul li {
+  display: inline;
+}
+
+.ingredients, .directions {
+  display: block;
+}
+
+.back-button {
+  position: absolute;
+  bottom: 7px;
+  cursor: pointer;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
