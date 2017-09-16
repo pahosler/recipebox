@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Directions extends Component {
   render(){
     return(
-      <li className='directions'>{this.props.value.toUpperCase()}</li>
+      <li className='directions'><p>{this.props.value.toUpperCase()}</p></li>
     )
   }
 }

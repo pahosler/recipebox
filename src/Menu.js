@@ -9,6 +9,12 @@ class Menu extends Component {
     this.props.toggle.recipe();
     this.props.toggle.back();
   }
+  componentWillMount(){
+    console.log('mounting menu list')
+  }
+  componentDidMount(){
+    console.log('it mounted a menu');
+  }
   render() {
     this.handleClick = this.handleClick.bind(this);
     if (!this.props.showMenu) {
@@ -16,7 +22,7 @@ class Menu extends Component {
     }
 
     return (
-      <p className="menu-list" id={this.props.recipeBox.list[this.props.value]} onClick={this.handleClick}>{this.props.value.toUpperCase()}</p>
+      <p className="menu-list" id={this.props.list[this.props.value]} onClick={this.handleClick}>{this.props.value.toUpperCase()}</p>
     )
   }
 }

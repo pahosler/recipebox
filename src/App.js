@@ -37,21 +37,22 @@ const recipes = [
 const recipeList = () => {
   let list = {};
   let ingredients = {};
+  let title = {};
   let directions = {};
   recipes.forEach((recipe, index) => {
+    title[index] = recipe.title;
     list[recipe.title] = index;
     ingredients[index] = recipe.ingredients;
     directions[index] = recipe.directions;
   });
-  return {list, ingredients, directions};
+  return {title, list, ingredients, directions};
 }
 
 const recipeBox = recipeList();
 const getSortedList = (list) => {
   return Object.keys(list).sort();
 }
-
-const sortedList = getSortedList(recipeBox.list);
+//const sortedList = getSortedList(recipeBox.list);
 
 class App extends Component {
   constructor() {
@@ -62,23 +63,32 @@ class App extends Component {
       showRecipe: false,
       showAddRecipe: false,
       showEditRecipe: false,
-      showConfirmModal: false,
+      showModalConfirm: false,
       showRadioSwitches: false,
       recipeTitleChanged: false,
       recipeDirectionChanged: false,
       reipeIngredientChanged: false,
+      menuActions: true,
+      recipeActions: false,
+      editActions: false,
+      addActions: false,
       selectedRecipe: null
     }
     this.whichRecipe=this.whichRecipe.bind(this);
+    this.deleteRecipe=this.deleteRecipe.bind(this);
 
     this.toggle={
       add: this.toggleAdd.bind(this),
+      addActions: this.toggleAddActions.bind(this),
       back: this.toggleBack.bind(this),
       edit: this.toggleEdit.bind(this),
+      editActions: this.toggleEditActions.bind(this),
       menu: this.toggleMenu.bind(this),
+      menuActions: this.toggleMenuActions.bind(this),
       modal: this.toggleConfirm.bind(this),
       radio: this.toggleRadio.bind(this),
       recipe: this.toggleRecipe.bind(this),
+      recipeActions: this.toggleRecipeActions.bind(this)
     }
 
   }
@@ -86,13 +96,29 @@ class App extends Component {
   whichRecipe(selectedRecipe) {
     this.setState({selectedRecipe});
   }
+  deleteRecipe(selectedRecipe){
+    recipes.splice(selectedRecipe,1);
+    recipeList();
+    this.toggle.modal();
+    this.toggle.recipe();
+    this.toggle.back();
+    this.toggle.menu();
+  }
 
   toggleMenu(){
     this.setState({showMenu: !this.state.showMenu})
   }
 
+  toggleMenuActions(){
+    this.setState({menuActions: !this.state.menuActions})
+  }
+
   toggleAdd(){
     this.setState({showAddRecipe: !this.state.showAddRecipe})
+  }
+
+  toggleAddActions(){
+    this.setState({addActions: !this.state.addActions})
   }
 
   toggleBack(){
@@ -103,8 +129,12 @@ class App extends Component {
     this.setState({showEditRecipe: !this.state.showEditRecipe})
   }
 
+  toggleEditActions(){
+    this.setState({editActions: !this.state.editActions})
+  }
+
   toggleConfirm(){
-    this.setState({showConfirmModal: !this.state.showConfirmModal})
+    this.setState({showModalConfirm: !this.state.showModalConfirm})
   }
 
   toggleRadio(){
@@ -113,6 +143,10 @@ class App extends Component {
 
   toggleRecipe(){
     this.setState({showRecipe: !this.state.showRecipe})
+  }
+
+  toggleRecipeActions(){
+    this.setState({recipeActions: !this.state.recipeActions})
   }
 
   render() {
@@ -124,11 +158,12 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo"/>
         </div>
         <Card
-          sortedList={sortedList}
-          recipeBox={recipeBox}
+          sortedList={getSortedList(recipeBox.list)}
+          recipeBox={recipeList()}
           state={this.state}
           toggle={this.toggle}
           whichRecipe={this.whichRecipe}
+          deleteRecipe={this.deleteRecipe}
           />
         <Footer/>
       </div>

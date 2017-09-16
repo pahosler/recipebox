@@ -11,7 +11,7 @@ class Recipe extends Component {
     return (
       <div>
       <div>
-        Ingredients
+        <strong>Ingredients</strong>
         <ul>
         {this.props.recipeBox.ingredients[this.props.selectedRecipe].map((ingredient,i)=>
           <Ingredients key={i} value={ingredient}
@@ -22,7 +22,7 @@ class Recipe extends Component {
         </ul>
       </div>
       <div>
-        Directions
+        <strong>Directions</strong>
         <ul>
         {this.props.recipeBox.directions[this.props.selectedRecipe].map((direction,i)=>
           <Directions key={i} value={direction}

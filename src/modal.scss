@@ -1,0 +1,21 @@
+.modal-body {
+  position: absolute;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: teal;
+  //background-color: rgba(0,150,0,0.8);
+}
+
+.modal-confirm {
+  background-color: seagreen;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid darkgreen;
+  width: 80%;
+  color: white;
+}
