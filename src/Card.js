@@ -21,7 +21,7 @@ export default function Card(props) {
             Recipe Box
           </p>
         </section>
-        <section className="menu-card mdc-card__supporting-text">
+        <section id="o-flow" className="menu-card mdc-card__supporting-text">
           {sortedList.map(title => (
             <Menu
               key={title.replace(/ /g, '-').toLowerCase()}

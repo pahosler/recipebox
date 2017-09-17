@@ -6,7 +6,7 @@ export default function MenuActions(props) {
   }
   return (
     <button
-      className="card-button4 mdc-fab mdc-fab--plain mdc-fab--mini "
+      className="card-button4 mdc-fab mdc-fab--accent mdc-fab--mini mdc-fab--theme-dark "
       aria-label="Edit"
       onClick={props.addClicked}
     >

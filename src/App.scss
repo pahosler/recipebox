@@ -1,3 +1,9 @@
+$mdc-theme-primary: seagreen;
+$mdc-theme-secondary: teal;
+$mdc-theme-background: darkgreen;
+
+@import "@material/theme/mdc-theme";
+
 .App {
   margin: 0 auto;
 }
@@ -74,14 +80,12 @@
 .menu-list:hover {
   font-weight:900;
   background-color: seagreen;
-  // line-height: 0.5;
 
 }
 
 .mdc-card {
   position: absolute;
   margin: 50px auto;
-  //top: 100px;
   left: 40%;
   text-align: left;
   backdround-color: teal;
@@ -93,6 +97,13 @@
 .recipe-box {
   height: 450px;
   width: 350px;
+}
+
+#o-flow {
+  overflow-y: scroll;
+}
+#o-flow::-webkit-scrollbar {
+  display: none;
 }
 
 .card-title {
@@ -204,6 +215,43 @@ label[for=menu-toggle]{
   margin-right: 10px;
   display: inline-block;
 }
+
+input {
+  margin-top: 15px;
+}
+
+label {
+  margin-bottom: -10px;
+}
+
+.edit {
+  line-height: .025;
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.edit-item {
+  position: relative;
+  bottom: 35px;
+  left: 260px;
+  display: inline-block;
+  //background-color: #00aabb;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+li .fa-minus {
+  color: #bb0000;
+}
+
+li .fa-plus {
+  color: #00ffbb;
+}
+
+.edit-frame {
+  width: 290px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
