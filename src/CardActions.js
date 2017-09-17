@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import '@material/card/dist/mdc.card.css';
 import '@material/fab/dist/mdc.fab.css';
@@ -9,7 +9,7 @@ import AddActions from './AddActions.js';
 import EditActions from './EditActions.js';
 
 class CardActions extends Component {
-  handleAddButton(){
+  handleAddButton() {
     console.log('clicked!');
     this.props.toggle.menuActions();
     this.props.toggle.menu();
@@ -17,36 +17,50 @@ class CardActions extends Component {
     this.props.toggle.addActions();
   }
 
-  handleDelete(){
-    console.log('delete',this.props.recipeBox.title[this.props.state.selectedRecipe])
+  handleDelete() {
+    console.log(
+      'delete',
+      this.props.recipeBox.title[this.props.state.selectedRecipe]
+    );
     this.props.toggle.modal();
   }
 
-  handleEdit(){
-    console.log('edit',this.props.recipeBox.title[this.props.state.selectedRecipe])
+  handleEdit() {
+    console.log(
+      'edit',
+      this.props.recipeBox.title[this.props.state.selectedRecipe]
+    );
     this.props.toggle.edit();
     this.props.toggle.back();
     this.props.toggle.recipe();
   }
-  render(){
+  render() {
     return (
       <div>
-        <MenuActions 
+        <MenuActions
           toggle={this.props.toggle}
-          showMenu={this.props.state.showMenu} 
-          addClicked={this.handleAddButton.bind(this)}/>
-        <RecipeActions showRecipe={this.props.state.showRecipe} handleDelete={this.handleDelete.bind(this)} handleEdit={this.handleEdit.bind(this)}/>
-        <AddActions 
+          showMenu={this.props.state.showMenu}
+          addClicked={this.handleAddButton.bind(this)}
+        />
+        <RecipeActions
+          showRecipe={this.props.state.showRecipe}
+          handleDelete={this.handleDelete.bind(this)}
+          handleEdit={this.handleEdit.bind(this)}
+        />
+        <AddActions
           toggle={this.props.toggle}
-          addRecipe={this.props.state.showAddRecipe}/>
-        <EditActions 
+          addRecipe={this.props.state.showAddRecipe}
+        />
+        <EditActions
           editRecipe={this.props.state.showEditRecipe}
-          toggle={this.props.toggle}/>
+          toggle={this.props.toggle}
+        />
         <BackButton
           showBack={this.props.state.showBack}
-          toggle={this.props.toggle}/>
+          toggle={this.props.toggle}
+        />
       </div>
-    )
+    );
   }
 }
-export default CardActions
+export default CardActions;

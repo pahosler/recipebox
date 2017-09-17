@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import logo from './logo.svg';
 import fcclogo from './freecodecamp_logo.svg';
@@ -8,29 +8,46 @@ import './App.css';
 
 const recipes = [
   {
-    title: "spaghetti",
-    ingredients: [
-      "1 lb pasta", "2 jars Ragu"
-    ],
-    directions: ["Add pasta to 4qts boiling water", "stir occasionally and let boil for approx 10 mins", "Remove from heat and drain water from pasta", "Heat Ragu according to directions on jar"]
-  }, {
-    title: "pizza",
-    ingredients: ["1 frozen Digiorno Pizza"],
-    directions: ["Follow heating instructions on box", "Slice into 8 pieces", "if you think 8 would be too filling slice into 4 pieces", "and remember, it's not delivery, it's Digiorno!"]
-  }, {
-    title: "tomato soup",
-    ingredients: ["1 can Progresso Tomato Basil Soup"],
-    directions: ["Use can opener to open can", "Empty into a microwave safe bowl", "Heat on high approximately 3 mins"]
-  }, {
-    title: "wish sandwich",
-    ingredients: [
-      "2 slices of bread", "1 Wish"
-    ],
-    directions: ["While holding bread use wish to wish for meat", "Eat bread"]
-  }, {
-    title: "ricochet biscuit",
-    ingredients: ["1 rubber biscuit"],
-    directions: ["Throw biscuit against wall", "If biscuit doesn't bounce back into your mouth, you go hungry!"]
+    title: 'spaghetti',
+    ingredients: ['1 lb pasta', '2 jars Ragu'],
+    directions: [
+      'Add pasta to 4qts boiling water',
+      'stir occasionally and let boil for approx 10 mins',
+      'Remove from heat and drain water from pasta',
+      'Heat Ragu according to directions on jar'
+    ]
+  },
+  {
+    title: 'pizza',
+    ingredients: ['1 frozen Digiorno Pizza'],
+    directions: [
+      'Follow heating instructions on box',
+      'Slice into 8 pieces',
+      'if you think 8 would be too filling slice into 4 pieces',
+      "and remember, it's not delivery, it's Digiorno!"
+    ]
+  },
+  {
+    title: 'tomato soup',
+    ingredients: ['1 can Progresso Tomato Basil Soup'],
+    directions: [
+      'Use can opener to open can',
+      'Empty into a microwave safe bowl',
+      'Heat on high approximately 3 mins'
+    ]
+  },
+  {
+    title: 'wish sandwich',
+    ingredients: ['2 slices of bread', '1 Wish'],
+    directions: ['While holding bread use wish to wish for meat', 'Eat bread']
+  },
+  {
+    title: 'ricochet biscuit',
+    ingredients: ['1 rubber biscuit'],
+    directions: [
+      'Throw biscuit against wall',
+      "If biscuit doesn't bounce back into your mouth, you go hungry!"
+    ]
   }
 ];
 
@@ -45,12 +62,12 @@ const recipeList = () => {
     ingredients[index] = recipe.ingredients;
     directions[index] = recipe.directions;
   });
-  return {title, list, ingredients, directions};
-}
+  return { title, list, ingredients, directions };
+};
 
-const getSortedList = (list) => {
+const getSortedList = list => {
   return Object.keys(list).sort();
-}
+};
 
 class App extends Component {
   constructor() {
@@ -71,11 +88,11 @@ class App extends Component {
       editActions: false,
       addActions: false,
       selectedRecipe: null
-    }
-    this.whichRecipe=this.whichRecipe.bind(this);
-    this.deleteRecipe=this.deleteRecipe.bind(this);
+    };
+    this.whichRecipe = this.whichRecipe.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
 
-    this.toggle={
+    this.toggle = {
       add: this.toggleAdd.bind(this),
       addActions: this.toggleAddActions.bind(this),
       back: this.toggleBack.bind(this),
@@ -87,15 +104,14 @@ class App extends Component {
       radio: this.toggleRadio.bind(this),
       recipe: this.toggleRecipe.bind(this),
       recipeActions: this.toggleRecipeActions.bind(this)
-    }
-
+    };
   }
 
   whichRecipe(selectedRecipe) {
-    this.setState({selectedRecipe});
+    this.setState({ selectedRecipe });
   }
-  deleteRecipe(selectedRecipe){
-    recipes.splice(selectedRecipe,1);
+  deleteRecipe(selectedRecipe) {
+    recipes.splice(selectedRecipe, 1);
     recipeList();
     this.toggle.modal();
     this.toggle.recipe();
@@ -103,59 +119,58 @@ class App extends Component {
     this.toggle.menu();
   }
 
-  toggleMenu(){
-    this.setState({showMenu: !this.state.showMenu})
+  toggleMenu() {
+    this.setState({ showMenu: !this.state.showMenu });
   }
 
-  toggleMenuActions(){
-    this.setState({menuActions: !this.state.menuActions})
+  toggleMenuActions() {
+    this.setState({ menuActions: !this.state.menuActions });
   }
 
-  toggleAdd(){
-    this.setState({showAddRecipe: !this.state.showAddRecipe})
+  toggleAdd() {
+    this.setState({ showAddRecipe: !this.state.showAddRecipe });
   }
 
-  toggleAddActions(){
-    this.setState({addActions: !this.state.addActions})
+  toggleAddActions() {
+    this.setState({ addActions: !this.state.addActions });
   }
 
-  toggleBack(){
-    this.setState({showBack: !this.state.showBack})
+  toggleBack() {
+    this.setState({ showBack: !this.state.showBack });
   }
 
-  toggleEdit(){
+  toggleEdit() {
     this.setState({
       showEditRecipe: !this.state.showEditRecipe
-    })
+    });
   }
 
-  toggleEditActions(){
-    this.setState({editActions: !this.state.editActions})
+  toggleEditActions() {
+    this.setState({ editActions: !this.state.editActions });
   }
 
-  toggleConfirm(){
-    this.setState({showModalConfirm: !this.state.showModalConfirm})
+  toggleConfirm() {
+    this.setState({ showModalConfirm: !this.state.showModalConfirm });
   }
 
-  toggleRadio(){
-    this.setState({showRadioSwitches: !this.state.showRadioSwitches})
+  toggleRadio() {
+    this.setState({ showRadioSwitches: !this.state.showRadioSwitches });
   }
 
-  toggleRecipe(){
-    this.setState({showRecipe: !this.state.showRecipe})
+  toggleRecipe() {
+    this.setState({ showRecipe: !this.state.showRecipe });
   }
 
-  toggleRecipeActions(){
-    this.setState({recipeActions: !this.state.recipeActions})
+  toggleRecipeActions() {
+    this.setState({ recipeActions: !this.state.recipeActions });
   }
 
   render() {
-
     return (
       <div className="App">
         <div className="App-header">
-          <img src={fcclogo} className='fcc-logo' alt='freecodecamp_logo'/>
-          <img src={logo} className="App-logo" alt="logo"/>
+          <img src={fcclogo} className="fcc-logo" alt="freecodecamp_logo" />
+          <img src={logo} className="App-logo" alt="logo" />
         </div>
         <Card
           getSortedList={getSortedList.bind(this)}
@@ -164,8 +179,8 @@ class App extends Component {
           toggle={this.toggle}
           whichRecipe={this.whichRecipe}
           deleteRecipe={this.deleteRecipe}
-          />
-        <Footer/>
+        />
+        <Footer />
       </div>
     );
   }
