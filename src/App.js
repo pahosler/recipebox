@@ -48,11 +48,9 @@ const recipeList = () => {
   return {title, list, ingredients, directions};
 }
 
-const recipeBox = recipeList();
 const getSortedList = (list) => {
   return Object.keys(list).sort();
 }
-//const sortedList = getSortedList(recipeBox.list);
 
 class App extends Component {
   constructor() {
@@ -126,7 +124,9 @@ class App extends Component {
   }
 
   toggleEdit(){
-    this.setState({showEditRecipe: !this.state.showEditRecipe})
+    this.setState({
+      showEditRecipe: !this.state.showEditRecipe
+    })
   }
 
   toggleEditActions(){
@@ -158,7 +158,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo"/>
         </div>
         <Card
-          sortedList={getSortedList(recipeBox.list)}
+          getSortedList={getSortedList.bind(this)}
           recipeBox={recipeList()}
           state={this.state}
           toggle={this.toggle}

@@ -1,40 +1,27 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '@material/card/dist/mdc.card.css';
 import Ingredients from './Ingredients.js';
 import Directions from './Directions.js';
 
-class Recipe extends Component {
-  render(){
-    if(!this.props.showRecipe){
+export default function Recipe(props){
+    if (!props.showRecipe) {
       return null;
     }
     return (
       <div>
-      <div>
-        <strong>Ingredients</strong>
-        <ul>
-        {this.props.recipeBox.ingredients[this.props.selectedRecipe].map((ingredient,i)=>
-          <Ingredients key={i} value={ingredient}
-            recipeBox={this.props.recipeBox}
-            selectedRecipe={this.props.selectedRecipe}
-          />
-        )}
-        </ul>
-      </div>
-      <div>
-        <strong>Directions</strong>
-        <ul>
-        {this.props.recipeBox.directions[this.props.selectedRecipe].map((direction,i)=>
-          <Directions key={i} value={direction}
-          recipeBox={this.props.recipeBox}
-          selectedRecipe={this.props.selectedRecipe}
-           />
-        )}
-        </ul>
-      </div>
+        <div>
+          <p><strong>{props.recipeBox.title[props.selectedRecipe].toUpperCase()}</strong></p>
+          <strong>Ingredients</strong>
+          <ul>
+            {props.recipeBox.ingredients[props.selectedRecipe].map((ingredient, i) => <Ingredients key={i} value={ingredient} recipeBox={props.recipeBox} selectedRecipe={props.selectedRecipe}/>)}
+          </ul>
+        </div>
+        <div>
+          <strong>Directions</strong>
+          <ul>
+            {props.recipeBox.directions[props.selectedRecipe].map((direction, i) => <Directions key={i} value={direction} recipeBox={props.recipeBox} selectedRecipe={props.selectedRecipe}/>)}
+          </ul>
+        </div>
       </div>
     )
   }
-}
-
-export default Recipe
