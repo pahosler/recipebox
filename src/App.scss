@@ -226,18 +226,17 @@ label {
 
 .edit {
   line-height: .025;
-  margin-top: 15px;
+  margin-top: 30px;
   margin-bottom: 0px;
 }
 
 .edit-item {
   position: relative;
-  bottom: 35px;
-  left: 260px;
+  bottom: 0;
+  left: 255px;
   display: inline-block;
   //background-color: #00aabb;
   cursor: pointer;
-  margin-right: 5px;
 }
 
 li .fa-minus {
@@ -249,8 +248,34 @@ li .fa-plus {
 }
 
 .edit-frame {
+  height: 20px;
   width: 290px;
 }
+
+button .fa-trash-o {
+  color: #7f0000;
+}
+
+button .fa:not(:hover){
+  color: #005555;
+}
+
+button .fa-pencil {
+  color: #00ccff;
+}
+
+button .fa-plus {
+  color: lightblue;
+}
+
+.fa-bars {
+  color: lightblue;
+}
+
+.fa-chevron-left {
+  color: lightblue;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

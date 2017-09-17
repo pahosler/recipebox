@@ -11,7 +11,7 @@ export default function MenuActions(props) {
       onClick={props.addClicked}
     >
       <span className="mdc-fab__icon">
-        <i className="fa fa-plus fa-2x" aria-hidden="true" />
+        <i className="fa fa-plus fa-2x fa-fw" aria-hidden="true" />
       </span>
     </button>
   );

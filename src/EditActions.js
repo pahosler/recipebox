@@ -11,7 +11,6 @@ export default function EditActions(props) {
   };
 
   const handleCancel = () => {
-    console.log('Cancle change');
     props.toggle.edit();
     props.toggle.recipe();
     props.toggle.back();

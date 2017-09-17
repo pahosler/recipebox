@@ -1,6 +1,6 @@
 import React from 'react';
 import '@material/textfield/dist/mdc.textfield.min.css';
-import { MDCTextfield, MDCTextfieldFoundation } from '@material/textfield';
+//import { MDCTextfield, MDCTextfieldFoundation } from '@material/textfield';
 
 export default function Edit(props) {
   const recipeBox = props.recipeBox;
@@ -39,10 +39,10 @@ export default function Edit(props) {
       <div>
         <ul>
           <li className="edit-item">
-            <i id={indx} className="fa fa-plus fa-small" />
+            <i id={indx} className="fa fa-plus fa-fw" />
           </li>
           <li className="edit-item">
-            <i id={indx} className="fa fa-minus fa-small" />
+            <i id={indx} className="fa fa-minus fa-fw" />
           </li>
         </ul>
       </div>
@@ -71,10 +71,10 @@ export default function Edit(props) {
       <div>
         <ul>
           <li className="edit-item">
-            <i id={indx} className="fa fa-plus fa-small" />
+            <i id={indx} className="fa fa-plus fa-fw" />
           </li>
           <li className="edit-item">
-            <i id={indx} className="fa fa-minus fa-small" />
+            <i id={indx} className="fa fa-minus fa-fw" />
           </li>
         </ul>
       </div>

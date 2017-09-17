@@ -13,8 +13,8 @@ class CardActions extends Component {
     console.log('clicked!');
     this.props.toggle.menuActions();
     this.props.toggle.menu();
-    this.props.toggle.add();
-    this.props.toggle.addActions();
+    this.props.toggle.edit();
+    this.props.toggle.editActions();
   }
 
   handleDelete() {

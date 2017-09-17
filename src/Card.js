@@ -6,7 +6,7 @@ import CardActions from './CardActions.js';
 import Recipe from './Recipe.js';
 import ModalConfirm from './ModalConfirm.js';
 import Edit from './Edit.js';
-
+import Add from './Edit.js';
 // class Card extends Component {
 //
 //   render() {
@@ -44,6 +44,11 @@ export default function Card(props) {
             selectedRecipe={props.state.selectedRecipe}
             toggle={props.toggle}
           />
+          {/*} <Add
+            recipeBox={props.recipeBox}
+            showEdit={props.state.showEditRecipe}
+            toggle={props.toggle}
+          />*/}
           <ModalConfirm
             showModal={props.state.showModalConfirm}
             selectedRecipe={props.state.selectedRecipe}
