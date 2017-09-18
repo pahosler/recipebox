@@ -13,6 +13,8 @@ class CardActions extends Component {
     console.log('clicked!');
     this.props.toggle.menuActions();
     this.props.toggle.menu();
+    this.props.edit.clear();
+    this.props.toggle.add();
     this.props.toggle.edit();
     this.props.toggle.editActions();
   }
@@ -54,6 +56,10 @@ class CardActions extends Component {
         <EditActions
           editRecipe={this.props.state.showEditRecipe}
           toggle={this.props.toggle}
+          edit={this.props.edit}
+          add={this.props.state.addRecipe}
+          recipeBox={this.props.recipeBox}
+          title={this.props.state.title}
         />
         <BackButton
           showBack={this.props.state.showBack}

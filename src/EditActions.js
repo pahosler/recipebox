@@ -3,11 +3,21 @@ import '@material/button/dist/mdc.button.css';
 
 export default function EditActions(props) {
   const handleSubmit = () => {
-    console.log('Submit!');
-    props.toggle.edit();
-    props.toggle.recipe();
-    props.toggle.back();
-    props.toggle.recipeActions();
+    if (!props.add) {
+      props.toggle.edit();
+      props.toggle.recipe();
+      props.toggle.back();
+      props.toggle.recipeActions();
+      props.edit.submit();
+    } else {
+      if (props.recipeBox.list.hasOwnProperty(props.title)) {
+        return;
+      }
+      props.edit.submit();
+      props.toggle.edit();
+      props.toggle.menu();
+      props.toggle.menuActions();
+    }
   };
 
   const handleCancel = () => {

@@ -13,6 +13,9 @@ import Add from './Edit.js';
 
 export default function Card(props) {
   const sortedList = props.getSortedList(props.recipeBox.list);
+  let ingredients = props.state.ingredients;
+  let directions = props.state.directions;
+  let title = props.state.title;
   return (
     <div className="recipe-box">
       <div className="mdc-card">
@@ -43,6 +46,8 @@ export default function Card(props) {
             showEdit={props.state.showEditRecipe}
             selectedRecipe={props.state.selectedRecipe}
             toggle={props.toggle}
+            edit={props.edit}
+            fields={{ title, ingredients, directions }}
           />
           {/*} <Add
             recipeBox={props.recipeBox}
@@ -62,6 +67,7 @@ export default function Card(props) {
             recipeBox={props.recipeBox}
             toggle={props.toggle}
             state={props.state}
+            edit={props.edit}
           />
         </section>
       </div>

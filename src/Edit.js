@@ -3,14 +3,66 @@ import '@material/textfield/dist/mdc.textfield.min.css';
 //import { MDCTextfield, MDCTextfieldFoundation } from '@material/textfield';
 
 export default function Edit(props) {
-  const recipeBox = props.recipeBox;
-  const selectedRecipe = props.selectedRecipe;
-  let title = recipeBox.title[selectedRecipe];
-  let ingredients = recipeBox.ingredients[selectedRecipe];
-  let directions = recipeBox.directions[selectedRecipe];
+  let title = props.fields.title;
+  let ingredients = props.fields.ingredients;
+  let directions = props.fields.directions;
+
+  const any = element => element === '';
 
   const handleChange = e => {
-    return (title = e);
+    if (e.target.id === 'title') {
+      props.edit.field(e.target.id, e.target.value);
+    } else {
+      props.edit.field(e.target.name, e.target.value, e.target.id);
+    }
+  };
+
+  const handleIngredientAdd = e => {
+    let field = 'ingredients';
+    let value =
+      parseInt(e.target.id, 10) === ingredients.length - 1
+        ? parseInt(e.target.id, 10) + 1
+        : parseInt(e.target.id, 10);
+    if (value === 0) {
+      value = 1;
+    }
+    if (ingredients.some(any)) {
+      return;
+    }
+    props.edit.insert(field, value);
+  };
+
+  const handleIngredientDel = e => {
+    let field = 'ingredients';
+    let value = parseInt(e.target.id, 10);
+    if (ingredients.length < 2) {
+      return;
+    }
+    props.edit.delete(field, value);
+  };
+
+  const handleDirectionAdd = e => {
+    let field = 'directions';
+    let value =
+      parseInt(e.target.id, 10) === directions.length - 1
+        ? parseInt(e.target.id, 10) + 1
+        : parseInt(e.target.id, 10);
+    if (value === 0) {
+      value = 1;
+    }
+    if (directions.some(any)) {
+      return;
+    }
+    props.edit.insert(field, value);
+  };
+
+  const handleDirectionDel = e => {
+    let field = 'directions';
+    let value = parseInt(e.target.id, 10);
+    if (directions.length < 2) {
+      return;
+    }
+    props.edit.delete(field, value);
   };
 
   if (!props.showEdit) {
@@ -25,6 +77,7 @@ export default function Edit(props) {
             type="text"
             className="mdc-textfield__input"
             value={item}
+            name="ingredients"
             onChange={handleChange.bind(this)}
           />
 
@@ -39,10 +92,18 @@ export default function Edit(props) {
       <div>
         <ul>
           <li className="edit-item">
-            <i id={indx} className="fa fa-plus fa-fw" />
+            <i
+              id={indx}
+              className="fa fa-plus fa-fw"
+              onClick={handleIngredientAdd.bind(this)}
+            />
           </li>
           <li className="edit-item">
-            <i id={indx} className="fa fa-minus fa-fw" />
+            <i
+              id={indx}
+              className="fa fa-minus fa-fw"
+              onClick={handleIngredientDel.bind(this)}
+            />
           </li>
         </ul>
       </div>
@@ -58,6 +119,7 @@ export default function Edit(props) {
             type="text"
             className="mdc-textfield__input"
             value={item}
+            name="directions"
             onChange={handleChange.bind(this)}
           />
           <label
@@ -71,10 +133,18 @@ export default function Edit(props) {
       <div>
         <ul>
           <li className="edit-item">
-            <i id={indx} className="fa fa-plus fa-fw" />
+            <i
+              id={indx}
+              className="fa fa-plus fa-fw"
+              onClick={handleDirectionAdd.bind(this)}
+            />
           </li>
           <li className="edit-item">
-            <i id={indx} className="fa fa-minus fa-fw" />
+            <i
+              id={indx}
+              className="fa fa-minus fa-fw"
+              onClick={handleDirectionDel.bind(this)}
+            />
           </li>
         </ul>
       </div>

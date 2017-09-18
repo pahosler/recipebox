@@ -87,8 +87,13 @@ class App extends Component {
       recipeActions: false,
       editActions: false,
       addActions: false,
-      selectedRecipe: null
+      addRecipe: false,
+      selectedRecipe: null,
+      title: '',
+      ingredients: [],
+      directions: []
     };
+
     this.whichRecipe = this.whichRecipe.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
 
@@ -105,14 +110,87 @@ class App extends Component {
       recipe: this.toggleRecipe.bind(this),
       recipeActions: this.toggleRecipeActions.bind(this)
     };
+
+    this.edit = {
+      field: this.editField.bind(this),
+      delete: this.deleteField.bind(this),
+      insert: this.insertField.bind(this),
+      clear: this.clearFields.bind(this),
+      submit: this.submitChanges.bind(this)
+    };
+  }
+
+  clearFields() {
+    this.setState({
+      title: '',
+      ingredients: [''],
+      directions: ['']
+    });
+  }
+
+  editField(field, value, selected) {
+    if (field === 'title') {
+      this.setState({ title: value });
+    } else if (field === 'ingredients') {
+      let changed = this.state[field];
+      changed.splice(selected, 1, value);
+      this.setState({ ingredients: changed });
+    } else {
+      let changed = this.state[field];
+      changed.splice(selected, 1, value);
+      this.setState({ directions: changed });
+    }
+  }
+
+  deleteField(field, selected) {
+    let deleted = this.state[field];
+    deleted.splice(selected, 1);
+    if (field === 'ingredients') {
+      this.setState({ ingredients: deleted });
+    } else {
+      this.setState({ directions: deleted });
+    }
+  }
+
+  insertField(field, selected) {
+    let inserted = this.state[field];
+    inserted.splice(selected, 0, '');
+    if (field === 'ingredients') {
+      this.setState({ ingredients: inserted });
+    } else {
+      this.setState({ directions: inserted });
+    }
+  }
+
+  submitChanges() {
+    let selectedRecipe = this.state.selectedRecipe;
+    let title = this.state.title;
+    let ingredients = this.state.ingredients;
+    let directions = this.state.directions;
+    if (!this.state.addRecipe) {
+      recipes[selectedRecipe].title = title;
+      recipes[selectedRecipe].ingredients = ingredients;
+      recipes[selectedRecipe].directions = directions;
+    } else {
+      recipes.splice(recipes.length, 1, {
+        title: title,
+        ingredients: ingredients,
+        directions: directions
+      });
+      this.toggle.add();
+    }
   }
 
   whichRecipe(selectedRecipe) {
-    this.setState({ selectedRecipe });
+    let recipe = recipeList();
+    let title = recipe.title[selectedRecipe];
+    let ingredients = recipe.ingredients[selectedRecipe];
+    let directions = recipe.directions[selectedRecipe];
+    this.setState({ selectedRecipe, title, ingredients, directions });
   }
+
   deleteRecipe(selectedRecipe) {
     recipes.splice(selectedRecipe, 1);
-    recipeList();
     this.toggle.modal();
     this.toggle.recipe();
     this.toggle.back();
@@ -128,7 +206,7 @@ class App extends Component {
   }
 
   toggleAdd() {
-    this.setState({ showAddRecipe: !this.state.showAddRecipe });
+    this.setState({ addRecipe: !this.state.addRecipe });
   }
 
   toggleAddActions() {
@@ -158,7 +236,9 @@ class App extends Component {
   }
 
   toggleRecipe() {
-    this.setState({ showRecipe: !this.state.showRecipe });
+    this.setState({
+      showRecipe: !this.state.showRecipe
+    });
   }
 
   toggleRecipeActions() {
@@ -177,6 +257,7 @@ class App extends Component {
           recipeBox={recipeList()}
           state={this.state}
           toggle={this.toggle}
+          edit={this.edit}
           whichRecipe={this.whichRecipe}
           deleteRecipe={this.deleteRecipe}
         />
