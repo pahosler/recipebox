@@ -1,21 +1,13 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import '@material/card/dist/mdc.card.min.css';
 import Menu from './Menu.js';
 import CardActions from './CardActions.js';
 import Recipe from './Recipe.js';
 import ModalConfirm from './ModalConfirm.js';
 import Edit from './Edit.js';
-import Add from './Edit.js';
-// class Card extends Component {
-//
-//   render() {
 
 export default function Card(props) {
   const sortedList = props.getSortedList(props.recipeBox.list);
-  let ingredients = props.state.ingredients;
-  let directions = props.state.directions;
-  let title = props.state.title;
   return (
     <div className="recipe-box">
       <div className="mdc-card">
@@ -40,20 +32,17 @@ export default function Card(props) {
             showRecipe={props.state.showRecipe}
             selectedRecipe={props.state.selectedRecipe}
             toggle={props.toggle}
+            fields={props.fields}
           />
           <Edit
+            add={props.state.addRecipe}
             recipeBox={props.recipeBox}
             showEdit={props.state.showEditRecipe}
             selectedRecipe={props.state.selectedRecipe}
             toggle={props.toggle}
             edit={props.edit}
-            fields={{ title, ingredients, directions }}
+            fields={props.fields}
           />
-          {/*} <Add
-            recipeBox={props.recipeBox}
-            showEdit={props.state.showEditRecipe}
-            toggle={props.toggle}
-          />*/}
           <ModalConfirm
             showModal={props.state.showModalConfirm}
             selectedRecipe={props.state.selectedRecipe}
@@ -74,5 +63,3 @@ export default function Card(props) {
     </div>
   );
 }
-
-// export default Card;

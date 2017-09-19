@@ -6,14 +6,12 @@ export default function AddActions(props) {
     props.toggle.addActions();
     props.toggle.add();
     props.toggle.menu();
-    console.log('Submit new Recipe!');
   };
 
   const handleCancel = () => {
     props.toggle.addActions();
     props.toggle.add();
     props.toggle.menu();
-    console.log('Cancel add Recipe');
   };
   if (!props.addRecipe) {
     return null;

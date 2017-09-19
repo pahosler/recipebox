@@ -11,36 +11,20 @@ export default function Recipe(props) {
     <div>
       <div>
         <p>
-          <strong>
-            {props.recipeBox.title[props.selectedRecipe].toUpperCase()}
-          </strong>
+          <strong>{props.fields.title.toUpperCase()}</strong>
         </p>
         <strong>Ingredients</strong>
         <ul>
-          {props.recipeBox.ingredients[
-            props.selectedRecipe
-          ].map((ingredient, i) => (
-            <Ingredients
-              key={i}
-              value={ingredient}
-              recipeBox={props.recipeBox}
-              selectedRecipe={props.selectedRecipe}
-            />
+          {props.fields.ingredients.map((ingredient, i) => (
+            <Ingredients key={i} value={ingredient} />
           ))}
         </ul>
       </div>
       <div>
         <strong>Directions</strong>
         <ul>
-          {props.recipeBox.directions[
-            props.selectedRecipe
-          ].map((direction, i) => (
-            <Directions
-              key={i}
-              value={direction}
-              recipeBox={props.recipeBox}
-              selectedRecipe={props.selectedRecipe}
-            />
+          {props.fields.directions.map((direction, i) => (
+            <Directions key={i} value={direction} />
           ))}
         </ul>
       </div>

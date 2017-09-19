@@ -6,6 +6,29 @@ export default function Edit(props) {
   let title = props.fields.title;
   let ingredients = props.fields.ingredients;
   let directions = props.fields.directions;
+  const TITLE = props.recipeBox.title[props.selectedRecipe];
+  const badEntry = {
+    color: '#990000'
+  };
+  const goodEntry = {
+    color: '#006600'
+  };
+
+  const testTitle = entry => {
+    if (entry.length < 1) {
+      return badEntry;
+    } else if (props.add) {
+      return entry.length < 1 ||
+        props.recipeBox.list.hasOwnProperty(entry.toLowerCase())
+        ? badEntry
+        : goodEntry;
+    } else {
+      return entry !== TITLE &&
+        props.recipeBox.list.hasOwnProperty(entry.toLowerCase())
+        ? badEntry
+        : goodEntry;
+    }
+  };
 
   const any = element => element === '';
 
@@ -68,6 +91,7 @@ export default function Edit(props) {
   if (!props.showEdit) {
     return null;
   }
+
   const Ingredient = ingredients.map((item, indx) => (
     <div key={title.replace(/ /g, '-').toLowerCase() + indx.toString()}>
       <div className="edit-frame">
@@ -161,10 +185,12 @@ export default function Edit(props) {
           name="title"
           value={title}
           onChange={handleChange.bind(this)}
+          required
         />
         <label
           htmlFor="title"
           className="mdc-textfield__label mdc-textfield__label--float-above"
+          style={testTitle(title)}
         >
           Title
         </label>

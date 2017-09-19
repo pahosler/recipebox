@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Directions extends Component {
-  render() {
-    return (
-      <li className="directions">
-        <p>{this.props.value.toUpperCase()}</p>
-      </li>
-    );
-  }
+export default function Directions(props) {
+  return (
+    <li className="directions">
+      <p>{props.value.toUpperCase()}</p>
+    </li>
+  );
 }
-
-export default Directions;

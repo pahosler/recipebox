@@ -6,7 +6,7 @@ import Card from './Card.js';
 import Footer from './Footer.js';
 import './App.css';
 
-const recipes = [
+const seedRecipes = [
   {
     title: 'spaghetti',
     ingredients: ['1 lb pasta', '2 jars Ragu'],
@@ -69,6 +69,24 @@ const getSortedList = list => {
   return Object.keys(list).sort();
 };
 
+const checkStorage = () => {
+  if (localStorage.getItem('recipes') === null) {
+    setStorage(seedRecipes);
+  }
+};
+
+const setStorage = list => {
+  localStorage.setItem('recipes', JSON.stringify(list));
+  return;
+};
+
+const getStorage = () => {
+  checkStorage();
+  return JSON.parse(localStorage.getItem('recipes'));
+};
+
+const recipes = getStorage();
+
 class App extends Component {
   constructor() {
     super();
@@ -97,6 +115,12 @@ class App extends Component {
     this.whichRecipe = this.whichRecipe.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
 
+    this.fields = {
+      title: this.state.title,
+      ingredients: this.state.ingredients,
+      directions: this.state.directions
+    };
+
     this.toggle = {
       add: this.toggleAdd.bind(this),
       addActions: this.toggleAddActions.bind(this),
@@ -116,15 +140,33 @@ class App extends Component {
       delete: this.deleteField.bind(this),
       insert: this.insertField.bind(this),
       clear: this.clearFields.bind(this),
-      submit: this.submitChanges.bind(this)
+      submit: this.submitChanges.bind(this),
+      reset: this.resetChanges.bind(this)
     };
   }
 
   clearFields() {
+    let title = '';
+    let ingredients = [''];
+    let directions = [''];
     this.setState({
-      title: '',
-      ingredients: [''],
-      directions: ['']
+      title: title,
+      ingredients: ingredients,
+      directions: directions
+    });
+    this.fields = { title, ingredients, directions };
+  }
+
+  resetChanges() {
+    let recipeBox = recipeList();
+    let selected = this.state.selectedRecipe;
+    let title = recipeBox.title[selected];
+    let ingredients = recipeBox.ingredients[selected];
+    let directions = recipeBox.directions[selected];
+    this.setState({
+      title,
+      ingredients,
+      directions
     });
   }
 
@@ -164,13 +206,15 @@ class App extends Component {
 
   submitChanges() {
     let selectedRecipe = this.state.selectedRecipe;
-    let title = this.state.title;
-    let ingredients = this.state.ingredients;
-    let directions = this.state.directions;
+    let title = this.state.title.toLowerCase();
+    let ingredients =
+      this.state.ingredients < 1 ? [''] : this.state.ingredients;
+    let directions = this.state.directions < 1 ? [''] : this.state.directions;
     if (!this.state.addRecipe) {
       recipes[selectedRecipe].title = title;
       recipes[selectedRecipe].ingredients = ingredients;
       recipes[selectedRecipe].directions = directions;
+      setStorage(recipes);
     } else {
       recipes.splice(recipes.length, 1, {
         title: title,
@@ -178,6 +222,7 @@ class App extends Component {
         directions: directions
       });
       this.toggle.add();
+      setStorage(recipes);
     }
   }
 
@@ -187,6 +232,7 @@ class App extends Component {
     let ingredients = recipe.ingredients[selectedRecipe];
     let directions = recipe.directions[selectedRecipe];
     this.setState({ selectedRecipe, title, ingredients, directions });
+    this.fields = { title, ingredients, directions };
   }
 
   deleteRecipe(selectedRecipe) {
@@ -195,6 +241,7 @@ class App extends Component {
     this.toggle.recipe();
     this.toggle.back();
     this.toggle.menu();
+    setStorage(recipes);
   }
 
   toggleMenu() {
@@ -260,6 +307,11 @@ class App extends Component {
           edit={this.edit}
           whichRecipe={this.whichRecipe}
           deleteRecipe={this.deleteRecipe}
+          fields={{
+            title: this.state.title,
+            ingredients: this.state.ingredients,
+            directions: this.state.directions
+          }}
         />
         <Footer />
       </div>

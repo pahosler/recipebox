@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Ingredients extends Component {
-  render() {
-    return (
-      <li className="ingredients">
-        <p>{this.props.value.toUpperCase()}</p>
-      </li>
-    );
-  }
+export default function Ingredients(props) {
+  return (
+    <li className="ingredients">
+      <p>{props.value.toUpperCase()}</p>
+    </li>
+  );
 }
-
-export default Ingredients;

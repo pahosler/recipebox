@@ -10,7 +10,6 @@ import EditActions from './EditActions.js';
 
 class CardActions extends Component {
   handleAddButton() {
-    console.log('clicked!');
     this.props.toggle.menuActions();
     this.props.toggle.menu();
     this.props.edit.clear();
@@ -20,18 +19,10 @@ class CardActions extends Component {
   }
 
   handleDelete() {
-    console.log(
-      'delete',
-      this.props.recipeBox.title[this.props.state.selectedRecipe]
-    );
     this.props.toggle.modal();
   }
 
   handleEdit() {
-    console.log(
-      'edit',
-      this.props.recipeBox.title[this.props.state.selectedRecipe]
-    );
     this.props.toggle.edit();
     this.props.toggle.back();
     this.props.toggle.recipe();
