@@ -66,10 +66,7 @@ export default function Edit(props) {
 
   const handleDirectionAdd = e => {
     let field = 'directions';
-    let value =
-      parseInt(e.target.id, 10) === directions.length - 1
-        ? parseInt(e.target.id, 10) + 1
-        : parseInt(e.target.id, 10);
+    let value = parseInt(e.target.id, 10) + 1;
     if (value === 0) {
       value = 1;
     }
