@@ -42,6 +42,7 @@ export default function Card(props) {
             toggle={props.toggle}
             edit={props.edit}
             fields={props.fields}
+            entryError={props.toggle.entryError}
           />
           <ModalConfirm
             showModal={props.state.showModalConfirm}

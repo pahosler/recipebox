@@ -16,17 +16,37 @@ export default function Edit(props) {
 
   const testTitle = entry => {
     if (entry.length < 1) {
+      if (!props.entryError) {
+        props.entryError(true);
+      }
       return badEntry;
     } else if (props.add) {
-      return entry.length < 1 ||
-        props.recipeBox.list.hasOwnProperty(entry.toLowerCase())
-        ? badEntry
-        : goodEntry;
+      if (props.recipeBox.list.hasOwnProperty(entry.toLowerCase())) {
+        if (!props.entryError) {
+          props.entryError(true);
+        }
+        return badEntry;
+      } else {
+        if (props.entryError) {
+          props.entryError(false);
+        }
+        return goodEntry;
+      }
     } else {
-      return entry !== TITLE &&
+      if (
+        entry !== TITLE &&
         props.recipeBox.list.hasOwnProperty(entry.toLowerCase())
-        ? badEntry
-        : goodEntry;
+      ) {
+        if (!props.entryError) {
+          props.entryError(true);
+        }
+        return badEntry;
+      } else {
+        if (props.entryError) {
+          props.entryError(false);
+        }
+        return goodEntry;
+      }
     }
   };
 

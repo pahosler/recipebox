@@ -101,6 +101,7 @@ class App extends Component {
       recipeTitleChanged: false,
       recipeDirectionChanged: false,
       reipeIngredientChanged: false,
+      entryError: false,
       menuActions: true,
       recipeActions: false,
       editActions: false,
@@ -132,7 +133,8 @@ class App extends Component {
       modal: this.toggleConfirm.bind(this),
       radio: this.toggleRadio.bind(this),
       recipe: this.toggleRecipe.bind(this),
-      recipeActions: this.toggleRecipeActions.bind(this)
+      recipeActions: this.toggleRecipeActions.bind(this),
+      entryError: this.toggleEntryError.bind(this)
     };
 
     this.edit = {
@@ -141,7 +143,8 @@ class App extends Component {
       insert: this.insertField.bind(this),
       clear: this.clearFields.bind(this),
       submit: this.submitChanges.bind(this),
-      reset: this.resetChanges.bind(this)
+      reset: this.resetChanges.bind(this),
+      entryError: false
     };
   }
 
@@ -221,7 +224,7 @@ class App extends Component {
         ingredients: ingredients,
         directions: directions
       });
-      this.toggle.add();
+      //this.toggle.add();
       setStorage(recipes);
     }
   }
@@ -290,6 +293,10 @@ class App extends Component {
 
   toggleRecipeActions() {
     this.setState({ recipeActions: !this.state.recipeActions });
+  }
+
+  toggleEntryError(status) {
+    this.edit.entryError = status;
   }
 
   render() {

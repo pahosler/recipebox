@@ -3,10 +3,7 @@ import '@material/button/dist/mdc.button.css';
 
 export default function EditActions(props) {
   const handleSubmit = () => {
-    if (
-      props.recipeBox.list.hasOwnProperty(props.title.toLowerCase()) ||
-      props.title.replace(/ /g, '').length < 1
-    ) {
+    if (props.edit.entryError) {
       return;
     } else if (!props.add) {
       props.toggle.edit();
@@ -16,6 +13,7 @@ export default function EditActions(props) {
       props.edit.submit();
     } else {
       props.edit.submit();
+      props.toggle.add();
       props.toggle.edit();
       props.toggle.menu();
       props.toggle.menuActions();
@@ -23,6 +21,9 @@ export default function EditActions(props) {
   };
 
   const handleCancel = () => {
+    if (!props.edit.entryError) {
+      props.toggle.entryError(false);
+    }
     if (!props.add) {
       props.edit.reset();
       props.toggle.edit();
