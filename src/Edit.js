@@ -6,6 +6,7 @@ export default function Edit(props) {
   let title = props.fields.title;
   let ingredients = props.fields.ingredients;
   let directions = props.fields.directions;
+  const KEY_ENTER = 13;
   const TITLE = props.recipeBox.title[props.selectedRecipe];
   const badEntry = {
     color: '#990000'
@@ -105,6 +106,18 @@ export default function Edit(props) {
     props.edit.delete(field, value);
   };
 
+  const handleKeypress = e => {
+    if (e.which === KEY_ENTER) {
+      if (e.target.name === 'ingredients') {
+        handleIngredientAdd(e);
+      } else if (e.target.name === 'directions') {
+        handleDirectionAdd(e);
+      }
+    } else {
+      handleChange(e);
+    }
+  };
+
   if (!props.showEdit) {
     return null;
   }
@@ -120,6 +133,7 @@ export default function Edit(props) {
             value={item}
             name="ingredients"
             onChange={handleChange.bind(this)}
+            onKeyUp={handleKeypress.bind(this)}
           />
 
           <label
@@ -162,6 +176,7 @@ export default function Edit(props) {
             value={item}
             name="directions"
             onChange={handleChange.bind(this)}
+            onKeyUp={handleKeypress.bind(this)}
           />
           <label
             htmlFor={indx}
