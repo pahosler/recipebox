@@ -4,6 +4,9 @@ import Ingredients from './Ingredients.js';
 import Directions from './Directions.js';
 
 export default function Recipe(props) {
+  let title = props.state.title;
+  let ingredients = props.state.ingredients;
+  let directions = props.state.directions;
   if (!props.showRecipe) {
     return null;
   }
@@ -11,11 +14,11 @@ export default function Recipe(props) {
     <div>
       <div>
         <p>
-          <strong>{props.fields.title.toUpperCase()}</strong>
+          <strong>{title.toUpperCase()}</strong>
         </p>
         <strong>Ingredients</strong>
         <ul>
-          {props.fields.ingredients.map((ingredient, i) => (
+          {ingredients.map((ingredient, i) => (
             <Ingredients key={i} value={ingredient} />
           ))}
         </ul>
@@ -23,7 +26,7 @@ export default function Recipe(props) {
       <div>
         <strong>Directions</strong>
         <ul>
-          {props.fields.directions.map((direction, i) => (
+          {directions.map((direction, i) => (
             <Directions key={i} value={direction} />
           ))}
         </ul>

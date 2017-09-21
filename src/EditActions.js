@@ -25,6 +25,8 @@ export default function EditActions(props) {
       props.toggle.entryError(false);
     }
     if (!props.add) {
+      props.edit.clear();
+      props.whichRecipe(props.selectedRecipe);
       props.edit.reset();
       props.toggle.edit();
       props.toggle.recipe();

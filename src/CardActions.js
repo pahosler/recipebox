@@ -51,6 +51,8 @@ class CardActions extends Component {
           add={this.props.state.addRecipe}
           recipeBox={this.props.recipeBox}
           title={this.props.state.title}
+          whichRecipe={this.props.whichRecipe}
+          selectedRecipe={this.props.selectedRecipe}
         />
         <BackButton
           showBack={this.props.state.showBack}

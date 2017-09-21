@@ -51,7 +51,7 @@ const seedRecipes = [
   }
 ];
 
-const recipeList = () => {
+const recipeList = recipes => {
   let list = {};
   let ingredients = {};
   let title = {};
@@ -85,7 +85,7 @@ const getStorage = () => {
   return JSON.parse(localStorage.getItem('recipes'));
 };
 
-const recipes = getStorage();
+let recipes = getStorage();
 
 class App extends Component {
   constructor() {
@@ -161,16 +161,19 @@ class App extends Component {
   }
 
   resetChanges() {
-    let recipeBox = recipeList();
+    let recipes = getStorage();
+    let recipeBox = recipeList(recipes);
     let selected = this.state.selectedRecipe;
     let title = recipeBox.title[selected];
     let ingredients = recipeBox.ingredients[selected];
     let directions = recipeBox.directions[selected];
+
     this.setState({
       title,
       ingredients,
       directions
     });
+    this.fields = { title, ingredients, directions };
   }
 
   editField(field, value, selected) {
@@ -230,7 +233,7 @@ class App extends Component {
   }
 
   whichRecipe(selectedRecipe) {
-    let recipe = recipeList();
+    let recipe = recipeList(recipes);
     let title = recipe.title[selectedRecipe];
     let ingredients = recipe.ingredients[selectedRecipe];
     let directions = recipe.directions[selectedRecipe];
@@ -308,7 +311,7 @@ class App extends Component {
         </div>
         <Card
           getSortedList={getSortedList.bind(this)}
-          recipeBox={recipeList()}
+          recipeBox={recipeList(recipes)}
           state={this.state}
           toggle={this.toggle}
           edit={this.edit}

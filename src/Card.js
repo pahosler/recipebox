@@ -31,8 +31,10 @@ export default function Card(props) {
             recipeBox={props.recipeBox}
             showRecipe={props.state.showRecipe}
             selectedRecipe={props.state.selectedRecipe}
+            whichRecipe={props.whichRecipe}
             toggle={props.toggle}
             fields={props.fields}
+            state={props.state}
           />
           <Edit
             add={props.state.addRecipe}
@@ -58,6 +60,8 @@ export default function Card(props) {
             toggle={props.toggle}
             state={props.state}
             edit={props.edit}
+            whichRecipe={props.whichRecipe}
+            selectedRecipe={props.state.selectedRecipe}
           />
         </section>
       </div>

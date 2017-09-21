@@ -113,8 +113,6 @@ export default function Edit(props) {
       } else if (e.target.name === 'directions') {
         handleDirectionAdd(e);
       }
-    } else {
-      handleChange(e);
     }
   };
 
